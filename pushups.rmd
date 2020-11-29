@@ -1,6 +1,6 @@
 ---
 title: "Who Does More Pushups"
-author: "Your Name"
+author: "Cyann Arevalo"
 date: "Fall 2020"
 output:
 html_document:
@@ -12,15 +12,22 @@ toc: true
 ```{r include=FALSE,echo=FALSE}
 require(tigerstats)
 require(tidyverse)
+data(pushups)
 ```
 
 # Introduction
 
 <!--In this section you explain what you are trying to show. Where did the data come from? What is the research or other question you are trying to answer?!-->
 
+$H_0$: There is no difference between the average number of pushups of line vs skill players
+
+$H_A$: The average number of pushups done by line players is statistically different than that of skill players. 
+
 # Methods
 
 <!--Decide on your methods: use "variable analysis" or other appropriate descriptors. Make sure to choose at least one graphical method and at least one numerical method.!-->
+
+As we look at the variables, we can see that these are numerical~categorical problems, so we will use the numerical~car.rmd.
 
 # Results
 
@@ -30,19 +37,48 @@ require(tidyverse)
 
 ### Graphical Descriptive Results
 
+
+```{r}
+plot(pushups~position,data=pushups)
+```
+
+  
+As we look at the boxplot, we can see that the highest amount of pushups the LINE players can do is close to the bottom 25% of what the SKILL players can do, meaning that the SKILL players can do many more pushups than the LINE players.
+
+  
+
 <!--Graphical results here. Make sure to show your code. Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too. Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
 ### Numerical Descriptive Results
+
+  
+```{r}
+favstats(pushups~position,data=pushups)
+```  
+
+When we look at the mean for both the LINE and SKILL players, we can see that LINE players mean is 17 while the mean for the SKILL players is 49. This is almost 3 times the LINE players mean.
+
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
 ## Inferential Results
 
+  
+```{r}
+t.test(pushups~position,data=pushups)
+```  
+
+We can see here that the p-value is 0.000009421, which is smaller than 0.05. This means, we reject the null hypothesis.
+
+  
 <!--State hypothesis clearly. Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc. Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
 
 
 # Discussion and Conclusion
-
+   
+ Since we rejected the null hypothesis, we can now conclude that on average, LINE players do less pushups than SKILL players.
+ 
+   
+   
 <!--Discussion and conclusion here. If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason. Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
 
-When your markdown file successfully knits and you are satisfied with your results, then push your work back to your github repository and submit the link to your github repo to canvas  to complete this assignment.
